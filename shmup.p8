@@ -11,8 +11,10 @@ function _init()
 	score = 0
 	state = 0
 	clock = 0
-	last_time= time()
+	last_time = 0
 end
+
+
 
 function _update60()
 	if (state==0) update_game()
@@ -32,10 +34,7 @@ function update_game()
 	if #enemies==0 then
 		spawn_enemies(ceil(rnd(9)))
 	end 
-	if #ship_enemies==0 then
-		if (time() - last_time) > 5 then
-			spr(01)
-		end
+	if (#ship_enemies==0 and (clock-last_time > 400)) then
 		spawn_ship_enemies()
 	end 
 	update_enemies()
@@ -76,6 +75,9 @@ function draw_game()
 		end
 	--score
 	print("score:\n"..score,2,2,7)
+	--debug
+	print(clock,2,70,10)
+	print(last_time,2,80,10)
 end
 -->8
 --bullets
@@ -203,6 +205,7 @@ function update_ship_enemies()
 					sfx(2)
 					del(ship_enemies,e)
 					score+= 200
+					last_time=clock
 				end
 			end
 		end	
@@ -278,7 +281,7 @@ rectfill(31,53,105,79,0)
 rectfill(28,50,102,76,1)
 print("score:",50,50,7)
 print(score,50,58,10)
-print("🅾️ to continue",33,70,7)
+print("🅾️ to restart",33,70,7)
 end
 __gfx__
 000000000060060000a00a0000222200002222000090090000900900000000000000000000000000000000000000000000000000000000000000000000000000

@@ -76,8 +76,8 @@ function draw_game()
 	--score
 	print("score:\n"..score,2,2,7)
 	--debug
-	print(clock,2,70,10)
-	print(last_time,2,80,10)
+	--print(clock,2,70,10)
+	--print(last_time,2,80,10)
 end
 -->8
 --bullets

@@ -12,6 +12,7 @@ function _init()
 	state = 0
 	clock = 0
 	last_time = 0
+	last_wave = 0
 end
 
 
@@ -31,7 +32,7 @@ function update_game()
 	update_player()
 	update_bullets()
 	update_stars()
-	if #enemies==0 then
+	if (#enemies==0 or (clock-last_wave > 80)) then
 		spawn_enemies(ceil(rnd(9)))
 	end 
 	if (#ship_enemies==0 and (clock-last_time > 400)) then
@@ -146,6 +147,7 @@ for i=1, amount do
 		life=4
 		}
 		add(enemies,new_enemy)
+		last_wave = clock
 	end
 end
 

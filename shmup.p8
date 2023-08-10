@@ -79,6 +79,7 @@ function draw_game()
 	--debug
 	--print(clock,2,70,10)
 	--print(last_time,2,80,10)
+	--print(p.x,2,80,10)
 end
 -->8
 --bullets
@@ -260,10 +261,10 @@ end
 --player
 
 function update_player()
-	if (btn(➡️))	p.x += p.speed
-	if (btn(⬅️))	p.x -= p.speed
-	if (btn(⬆️))	p.y -= p.speed
-	if (btn(⬇️))	p.y += p.speed
+	if (btn(➡️) and p.x < 127)	p.x += p.speed
+	if (btn(⬅️) and p.x > 0)	p.x -= p.speed
+	if (btn(⬆️) and p.y > 0)	p.y -= p.speed
+	if (btn(⬇️) and p.y < 127)	p.y += p.speed
 	if (btnp(❎)) shoot()
 	
 	for e in all(enemies) do
